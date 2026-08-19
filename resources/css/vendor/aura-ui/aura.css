@@ -1,0 +1,506 @@
+/*
+ * Aura UI — Main Entry Point (Free)
+ * "Vibrant Depth" Design System — Tailwind CSS 4
+ *
+ * Import this in your app CSS AFTER Tailwind:
+ *   @import "tailwindcss";
+ *   @import "vendor/aura-ui/aura.css";
+ *
+ * For Pro components, also import:
+ *   @import "vendor/aura-ui-pro/aura-pro.css";
+ *
+ * Dark mode: class-based (.dark on <html>), not media query.
+ */
+
+/* Override Tailwind 4 dark variant: use .dark class instead of prefers-color-scheme */
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+    /* ============================================
+       PRIMARY (Deep Blue → Indigo)
+       ============================================ */
+    --color-aura-primary-50:  #eef6ff;
+    --color-aura-primary-100: #dbeafe;
+    --color-aura-primary-200: #bfdbfe;
+    --color-aura-primary-300: #93c5fd;
+    --color-aura-primary-400: #60a5fa;
+    --color-aura-primary-500: #6366f1;
+    --color-aura-primary-600: #4f46e5;
+    --color-aura-primary-700: #4338ca;
+    --color-aura-primary-800: #3730a3;
+    --color-aura-primary-900: #312e81;
+    --color-aura-primary-950: #1e1b4b;
+
+    /* ============================================
+       SECONDARY (Teal/Cyan)
+       ============================================ */
+    --color-aura-secondary-50:  #ecfeff;
+    --color-aura-secondary-100: #cffafe;
+    --color-aura-secondary-200: #a5f3fc;
+    --color-aura-secondary-300: #67e8f9;
+    --color-aura-secondary-400: #22d3ee;
+    --color-aura-secondary-500: #06b6d4;
+    --color-aura-secondary-600: #0891b2;
+    --color-aura-secondary-700: #0e7490;
+    --color-aura-secondary-800: #155e75;
+    --color-aura-secondary-900: #164e63;
+
+    /* ============================================
+       SUCCESS (Emerald)
+       ============================================ */
+    --color-aura-success-50:  #ecfdf5;
+    --color-aura-success-100: #d1fae5;
+    --color-aura-success-200: #a7f3d0;
+    --color-aura-success-300: #6ee7b7;
+    --color-aura-success-400: #34d399;
+    --color-aura-success-500: #10b981;
+    --color-aura-success-600: #059669;
+    --color-aura-success-700: #047857;
+    --color-aura-success-800: #065f46;
+    --color-aura-success-900: #064e3b;
+
+    /* ============================================
+       WARNING (Amber)
+       ============================================ */
+    --color-aura-warning-50:  #fffbeb;
+    --color-aura-warning-100: #fef3c7;
+    --color-aura-warning-200: #fde68a;
+    --color-aura-warning-300: #fcd34d;
+    --color-aura-warning-400: #fbbf24;
+    --color-aura-warning-500: #f59e0b;
+    --color-aura-warning-600: #d97706;
+    --color-aura-warning-700: #b45309;
+    --color-aura-warning-800: #92400e;
+    --color-aura-warning-900: #78350f;
+
+    /* ============================================
+       DANGER (Red/Coral)
+       ============================================ */
+    --color-aura-danger-50:  #fef2f2;
+    --color-aura-danger-100: #fee2e2;
+    --color-aura-danger-200: #fecaca;
+    --color-aura-danger-300: #fca5a5;
+    --color-aura-danger-400: #f87171;
+    --color-aura-danger-500: #ef4444;
+    --color-aura-danger-600: #dc2626;
+    --color-aura-danger-700: #b91c1c;
+    --color-aura-danger-800: #991b1b;
+    --color-aura-danger-900: #7f1d1d;
+
+    /* ============================================
+       INFO (Sky)
+       ============================================ */
+    --color-aura-info-50:  #f0f9ff;
+    --color-aura-info-100: #e0f2fe;
+    --color-aura-info-200: #bae6fd;
+    --color-aura-info-300: #7dd3fc;
+    --color-aura-info-400: #38bdf8;
+    --color-aura-info-500: #0ea5e9;
+    --color-aura-info-600: #0284c7;
+    --color-aura-info-700: #0369a1;
+    --color-aura-info-800: #075985;
+    --color-aura-info-900: #0c4a6e;
+
+    /* ============================================
+       SURFACES (Light mode — warm whites)
+       ============================================ */
+    --color-aura-surface-0:   #ffffff;
+    --color-aura-surface-50:  #f8fafc;
+    --color-aura-surface-100: #f1f5f9;
+    --color-aura-surface-200: #e2e8f0;
+    --color-aura-surface-300: #cbd5e1;
+    --color-aura-surface-400: #94a3b8;
+    --color-aura-surface-500: #64748b;
+    --color-aura-surface-600: #475569;
+    --color-aura-surface-700: #334155;
+    --color-aura-surface-800: #1e293b;
+    --color-aura-surface-900: #0f172a;
+
+    /* RGB channel variants (for rgba() compositing, e.g. glass/backdrop effects) */
+    --aura-surface-0-rgb:   255,255,255;
+    --aura-surface-200-rgb: 226,232,240;
+
+    /* ============================================
+       BORDER RADIUS
+       ============================================ */
+    --radius-aura-xs:   4px;
+    --radius-aura-sm:   6px;
+    --radius-aura-md:   8px;
+    --radius-aura-lg:   12px;
+    --radius-aura-xl:   16px;
+    --radius-aura-2xl:  24px;
+    --radius-aura-full: 9999px;
+
+    /* ============================================
+       SHADOWS
+       ============================================ */
+    --shadow-aura-xs:  0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-aura-sm:  0 1px 2px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-aura-md:  0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.02);
+    --shadow-aura-lg:  0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+    --shadow-aura-xl:  0 20px 25px rgba(0, 0, 0, 0.1), 0 8px 10px rgba(0, 0, 0, 0.04);
+    --shadow-aura-2xl: 0 25px 50px rgba(0, 0, 0, 0.15);
+
+    /* ============================================
+       Z-INDEX SCALE
+       ============================================ */
+    --z-aura-dropdown:  50;
+    --z-aura-sticky:    100;
+    --z-aura-overlay:   400;
+    --z-aura-modal:     500;
+    --z-aura-tooltip:   600;
+    --z-aura-toast:     700;
+
+    /* ============================================
+       FONTS
+       ============================================ */
+    --font-aura-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-aura-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+    /* ============================================
+       ANIMATION DURATIONS
+       ============================================ */
+    --animate-duration-fast:   100ms;
+    --animate-duration-normal: 150ms;
+    --animate-duration-slow:   250ms;
+
+    /* ============================================
+       EASING
+       ============================================ */
+    --ease-aura-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-aura-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-aura-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Z-index utility classes */
+@utility z-aura-dropdown { z-index: var(--z-aura-dropdown); }
+@utility z-aura-sticky   { z-index: var(--z-aura-sticky); }
+@utility z-aura-overlay  { z-index: var(--z-aura-overlay); }
+@utility z-aura-modal    { z-index: var(--z-aura-modal); }
+@utility z-aura-tooltip  { z-index: var(--z-aura-tooltip); }
+@utility z-aura-toast    { z-index: var(--z-aura-toast); }
+
+/* Stepper */
+.aura-stepper { display: flex; gap: 0.5rem; }
+.aura-stepper--horizontal { flex-direction: row; align-items: flex-start; }
+.aura-stepper--vertical { flex-direction: column; }
+
+.aura-stepper__step { display: flex; align-items: center; gap: 0.75rem; flex: 1; position: relative; }
+.aura-stepper--vertical .aura-stepper__step { flex: none; }
+
+.aura-stepper__indicator {
+    width: 2.25rem; height: 2.25rem; border-radius: 9999px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 0.8125rem; flex-shrink: 0;
+    transition: all 200ms ease; border: 2px solid transparent;
+}
+.aura-stepper--sm .aura-stepper__indicator { width: 1.75rem; height: 1.75rem; font-size: 0.75rem; }
+.aura-stepper--lg .aura-stepper__indicator { width: 2.75rem; height: 2.75rem; font-size: 0.9375rem; }
+
+.aura-stepper__step--completed .aura-stepper__indicator {
+    background: linear-gradient(135deg, var(--color-aura-primary-500), var(--color-aura-primary-600));
+    color: #ffffff;
+}
+.aura-stepper__step--active .aura-stepper__indicator {
+    border-color: var(--color-aura-primary-500); color: var(--color-aura-primary-600);
+    background: color-mix(in oklab, var(--color-aura-primary-500), transparent 90%);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-aura-primary-500), transparent 85%);
+}
+.aura-stepper__step--pending .aura-stepper__indicator {
+    border-color: var(--color-aura-surface-300); color: var(--color-aura-surface-400);
+    background: var(--color-aura-surface-50);
+}
+
+.aura-stepper__check { width: 1rem; height: 1rem; }
+.aura-stepper__icon { width: 1rem; height: 1rem; }
+.aura-stepper__number { line-height: 1; }
+
+.aura-stepper__label { font-weight: 500; font-size: 0.8125rem; color: var(--color-aura-surface-900); }
+.aura-stepper__step--pending .aura-stepper__label { color: var(--color-aura-surface-400); }
+.aura-stepper__description { font-size: 0.75rem; color: var(--color-aura-surface-500); display: block; }
+
+/* Connectors (horizontal) */
+.aura-stepper--horizontal .aura-stepper__step:not(:last-child)::after {
+    content: ''; position: absolute; top: 1.125rem; left: calc(50% + 1.25rem); right: -0.5rem;
+    height: 2px; background: var(--color-aura-surface-200);
+}
+.aura-stepper--horizontal .aura-stepper__step--completed:not(:last-child)::after {
+    background: var(--color-aura-primary-500);
+}
+.aura-stepper--no-connectors .aura-stepper__step::after { display: none; }
+
+/* Connectors (vertical) */
+.aura-stepper--vertical .aura-stepper__step:not(:last-child)::after {
+    content: ''; position: absolute; top: 2.5rem; left: 1.0625rem;
+    width: 2px; height: calc(100% - 1.25rem); background: var(--color-aura-surface-200);
+}
+.aura-stepper--vertical .aura-stepper__step--completed:not(:last-child)::after {
+    background: var(--color-aura-primary-500);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .aura-stepper--horizontal { flex-direction: column; }
+    .aura-stepper--horizontal .aura-stepper__step::after { display: none; }
+}
+
+/* Notification Center */
+.aura-notification-center { position: relative; display: inline-block; }
+
+.aura-notification-center__trigger {
+    position: relative; padding: 0.5rem; border-radius: var(--radius-aura-md, 8px);
+    color: var(--color-aura-surface-600); cursor: pointer; background: none; border: none;
+    transition: color 150ms ease, background-color 150ms ease;
+}
+.aura-notification-center__trigger:hover { color: var(--color-aura-surface-900); background: var(--color-aura-surface-100); }
+
+.aura-notification-center__bell { width: 1.25rem; height: 1.25rem; }
+
+.aura-notification-center__badge {
+    position: absolute; top: 0; right: 0; min-width: 1.125rem; height: 1.125rem;
+    font-size: 0.6875rem; font-weight: 700; color: #ffffff; background: #ef4444;
+    border-radius: 9999px; display: flex; align-items: center; justify-content: center;
+    padding: 0 0.25rem; line-height: 1; border: 2px solid var(--color-aura-surface-0, #ffffff);
+}
+
+.aura-notification-center__dropdown {
+    position: absolute; z-index: 50; width: 22rem; margin-top: 0.5rem;
+    background: var(--color-aura-surface-0, #ffffff);
+    border: 1px solid var(--color-aura-surface-200);
+    border-radius: var(--radius-aura-lg, 12px);
+    box-shadow: var(--shadow-aura-lg); overflow: hidden;
+}
+.aura-notification-center__dropdown--bottom-end { right: 0; }
+.aura-notification-center__dropdown--bottom-start { left: 0; }
+
+.aura-notification-center__list { overflow-y: auto; }
+
+.aura-notification-center__item {
+    display: flex; gap: 0.75rem; padding: 0.75rem 1rem; text-decoration: none; color: inherit;
+    border-bottom: 1px solid var(--color-aura-surface-100);
+    transition: background-color 100ms ease;
+}
+.aura-notification-center__item:hover { background: var(--color-aura-surface-50); }
+.aura-notification-center__item:last-child { border-bottom: none; }
+
+.aura-notification-center__item--unread {
+    border-left: 3px solid var(--color-aura-primary-500);
+    background: color-mix(in oklab, var(--color-aura-primary-500), transparent 96%);
+}
+
+.aura-notification-center__item-icon {
+    width: 2rem; height: 2rem; border-radius: 9999px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--color-aura-surface-100); color: var(--color-aura-surface-500);
+}
+.aura-notification-center__item--primary .aura-notification-center__item-icon { background: color-mix(in oklab, var(--color-aura-primary-500), transparent 88%); color: var(--color-aura-primary-600); }
+.aura-notification-center__item--success .aura-notification-center__item-icon { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.aura-notification-center__item--warning .aura-notification-center__item-icon { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+.aura-notification-center__item--danger .aura-notification-center__item-icon { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+
+.aura-notification-center__item-body { min-width: 0; flex: 1; }
+.aura-notification-center__item-title { font-size: 0.8125rem; font-weight: 500; color: var(--color-aura-surface-900); display: block; }
+.aura-notification-center__item-desc { font-size: 0.75rem; color: var(--color-aura-surface-500); display: block; margin-top: 0.125rem; }
+.aura-notification-center__item-time { font-size: 0.6875rem; color: var(--color-aura-surface-400); display: block; margin-top: 0.25rem; }
+
+.aura-notification-center__empty { padding: 2rem 1rem; text-align: center; font-size: 0.8125rem; color: var(--color-aura-surface-400); }
+
+.aura-notification-center__footer {
+    padding: 0.625rem 1rem; border-top: 1px solid var(--color-aura-surface-200);
+    text-align: center; font-size: 0.8125rem;
+}
+
+/* Dark */
+/*
+ * Note on dark mode: the surface scale INVERTS in .dark (surface-0 becomes the
+ * darkest, surface-900 the lightest). A rule written as
+ * `.dark .thing { background: var(--color-aura-surface-800) }` therefore paints
+ * a nearly-white background. Five rules did exactly that and were removed on
+ * 2026-08-06 — the base rules already use surface-0 and surface-900, which
+ * invert on their own. Reach for a `.dark` override only when the inverted
+ * value is genuinely wrong, and check the computed colour in a browser.
+ */
+.dark .aura-notification-center__item:hover { background: rgba(255,255,255,0.04); }
+.dark .aura-notification-center__badge { border-color: var(--color-aura-surface-0); }
+
+/* Accents do NOT invert with the surfaces, so a shade that clears 4.5:1 on
+   white can fail on the dark card. success-700 is 5.02:1 in light and 3.26:1
+   in dark; the -400 shades are the readable ones there. */
+.dark .aura-data-card__change--positive { color: var(--color-aura-success-400); }
+.dark .aura-data-card__change--negative { color: var(--color-aura-danger-400); }
+
+/* Data Card */
+.aura-data-card {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    padding: 1.25rem 1.5rem; background: var(--color-aura-surface-0, #ffffff);
+    border: 1px solid var(--color-aura-surface-200); border-radius: var(--radius-aura-lg, 12px);
+    transition: box-shadow 200ms ease, border-color 200ms ease, transform 200ms ease;
+    text-decoration: none; color: inherit; overflow: hidden;
+}
+.aura-data-card:hover { box-shadow: var(--shadow-aura-md); }
+.aura-data-card--clickable:hover { transform: translateY(-1px); border-color: var(--color-aura-surface-300); cursor: pointer; }
+
+.aura-data-card__header { display: flex; align-items: center; gap: 0.5rem; }
+.aura-data-card__icon {
+    width: 2.25rem; height: 2.25rem; border-radius: var(--radius-aura-md, 8px);
+    display: flex; align-items: center; justify-content: center;
+    background: color-mix(in oklab, var(--color-aura-primary-500), transparent 90%);
+    color: var(--color-aura-primary-600); flex-shrink: 0;
+}
+.aura-data-card__title { font-size: 0.8125rem; font-weight: 500; color: var(--color-aura-surface-600); text-transform: uppercase; letter-spacing: 0.03em; }
+
+.aura-data-card__body { display: flex; align-items: baseline; gap: 0.75rem; }
+.aura-data-card__value { font-size: 1.75rem; font-weight: 800; color: var(--color-aura-surface-900); letter-spacing: -0.025em; line-height: 1.1; }
+
+.aura-data-card__change { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.8125rem; font-weight: 600; }
+.aura-data-card__change--positive { color: var(--color-aura-success-700); }
+.aura-data-card__change--negative { color: var(--color-aura-danger-600); }
+.aura-data-card__change--neutral { color: var(--color-aura-surface-600); }
+.aura-data-card__change-icon { width: 1rem; height: 1rem; }
+
+.aura-data-card__sparkline { margin-top: 0.25rem; height: 2rem; color: var(--color-aura-primary-400); opacity: 0.7; }
+.aura-data-card__sparkline-svg { width: 100%; height: 100%; }
+
+.aura-data-card__footer { padding-top: 0.75rem; border-top: 1px solid var(--color-aura-surface-100); font-size: 0.8125rem; }
+
+
+/* Floating Label Input */
+.aura-floating-input { position: relative; width: 100%; max-width: 340px; }
+
+.aura-floating-input__field { position: relative; }
+
+.aura-floating-input__input {
+    width: 100%; padding: 1rem 0 0.5rem; border: none; border-bottom: 2px solid var(--color-aura-surface-500);
+    background: transparent; font-size: 0.9375rem; color: var(--color-aura-surface-900);
+    outline: none; transition: border-color 150ms ease; box-sizing: border-box;
+}
+.aura-floating-input__input:focus,
+.aura-floating-input__input--active { border-bottom-color: var(--color-aura-primary-500); }
+
+.aura-floating-input__label {
+    position: absolute; left: 0; top: 0.75rem; font-size: 0.9375rem; color: var(--color-aura-surface-400);
+    pointer-events: none; transition: all 150ms ease; transform-origin: left top;
+}
+.aura-floating-input__label--float {
+    transform: translateY(-0.75rem) scale(0.75); color: var(--color-aura-primary-600);
+}
+
+.aura-floating-input__required { color: var(--color-aura-danger-500); margin-left: 0.125rem; }
+
+.aura-floating-input__error { font-size: 0.75rem; color: var(--color-aura-danger-500); margin-top: 0.375rem; font-weight: 500; }
+
+.aura-floating-input--error .aura-floating-input__input { border-bottom-color: var(--color-aura-danger-500); }
+.aura-floating-input--error .aura-floating-input__label--float { color: var(--color-aura-danger-600); }
+
+.aura-floating-input--disabled .aura-floating-input__input { background: var(--color-aura-surface-50); cursor: not-allowed; opacity: 0.6; }
+
+.dark .aura-floating-input__input:focus { border-bottom-color: var(--color-aura-primary-400); }
+.dark .aura-floating-input__label--float { color: var(--color-aura-primary-400); }
+
+/* Slider
+   The track you see is 6px; the box you can hit is 24, which is what WCAG 2.2
+   asks for in 2.5.8. Painting the gradient on the element itself made the
+   pointer target exactly as tall as the line, six pixels. */
+.aura-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 24px;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+}
+.aura-slider::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 9999px;
+    background: linear-gradient(
+        to right,
+        var(--color-aura-primary-500) var(--aura-slider-progress, 0%),
+        var(--color-aura-surface-200) var(--aura-slider-progress, 0%)
+    );
+}
+.aura-slider::-moz-range-track {
+    height: 6px;
+    border-radius: 9999px;
+    background: linear-gradient(
+        to right,
+        var(--color-aura-primary-500) var(--aura-slider-progress, 0%),
+        var(--color-aura-surface-200) var(--aura-slider-progress, 0%)
+    );
+}
+.aura-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-aura-primary-500);
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    /* Centres the 18px thumb on the 6px track: (6 - 18) / 2. */
+    margin-top: -6px;
+}
+.aura-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-aura-primary-500);
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+.aura-slider:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Internal imports */
+@import "./compat/variables-compat.css";
+@import "./base/a11y.css";
+@import "./base/dark-mode.css";
+@import "./base/keyframes.css";
+@import "./base/glass.css";
+@import "./components/residual.css";
+
+/* Logos read as a texture until you look at one. Colour returns on hover and
+   on focus-within, so a keyboard reaches the same affordance as a pointer. */
+.aura-logo-cloud-grayscale .aura-logo-cloud-item { filter: grayscale(1); opacity: 0.65; transition: filter 150ms ease, opacity 150ms ease; }
+.aura-logo-cloud-grayscale .aura-logo-cloud-item:hover,
+.aura-logo-cloud-grayscale .aura-logo-cloud-item:focus-within { filter: grayscale(0); opacity: 1; }
+
+/* A button group is one control made of several: the inner corners square off
+   and the borders overlap so there is a single line between two buttons rather
+   than two lines with a gap. Written here rather than as utilities on the
+   children, which would depend on what each child already carries. */
+.aura-button-group > :not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-left: -1px;
+}
+.aura-button-group > :not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+/* The pressed or hovered button has to sit above its neighbours, or its border
+   is painted over by the one that comes after it. */
+.aura-button-group > :hover,
+.aura-button-group > :focus-visible,
+.aura-button-group > [aria-pressed="true"] {
+    position: relative;
+    z-index: 1;
+}
+.aura-button-group-vertical > :not(:first-child) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-left: 0;
+    margin-top: -1px;
+}
+.aura-button-group-vertical > :not(:last-child) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.aura-button-group-vertical > :first-child {
+    border-top-left-radius: var(--radius-aura-md);
+    border-top-right-radius: var(--radius-aura-md);
+}

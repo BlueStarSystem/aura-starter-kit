@@ -1,0 +1,35 @@
+@import 'tailwindcss';
+
+/*
+ * Aura UI. Published into resources/css/vendor/aura-ui by `php artisan aura:install`,
+ * which the starter kit runs for you on creation.
+ */
+@import './vendor/aura-ui/aura.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/* Tailwind must see the classes used inside the package's own Blade views. */
+@source '../../vendor/bluestarsystem/aura-ui/resources/views/**/*.blade.php';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /*
+     * Your brand goes here. Every Aura component reads these, so changing the
+     * scale restyles the whole application — there is nothing else to touch.
+     * Keep primary-500 at 4.5:1 or better against white: it is the background
+     * of the primary button, whose label is white.
+     */
+    --color-aura-primary-50: oklch(0.97 0.014 308);
+    --color-aura-primary-100: oklch(0.94 0.03 308);
+    --color-aura-primary-200: oklch(0.89 0.06 308);
+    --color-aura-primary-300: oklch(0.81 0.11 308);
+    --color-aura-primary-400: oklch(0.71 0.17 308);
+    --color-aura-primary-500: oklch(0.6 0.21 308);
+    --color-aura-primary-600: oklch(0.52 0.22 308);
+    --color-aura-primary-700: oklch(0.45 0.2 308);
+    --color-aura-primary-800: oklch(0.38 0.17 308);
+    --color-aura-primary-900: oklch(0.32 0.14 308);
+}

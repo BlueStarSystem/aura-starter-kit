@@ -1,0 +1,566 @@
+/*
+ * Aura UI — Residual CSS
+ * Styles that cannot be expressed with Tailwind utilities alone:
+ * pseudo-elements, sibling selectors, SVG backgrounds, complex animations
+ */
+
+/* ============================================
+   BUTTON — ::before gradient, ::after loader, hover transform
+   ============================================ */
+.aura-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.aura-btn:hover {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.aura-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.aura-btn:disabled,
+.aura-btn[disabled] {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.aura-btn-secondary::before,
+.aura-btn-ghost::before,
+.aura-btn-link::before,
+.aura-btn-outline::before {
+    display: none;
+}
+
+.aura-btn-link:hover {
+    transform: none;
+}
+
+.aura-btn-ghost:hover {
+    transform: translateY(-1px);
+}
+
+/* Loading spinner pseudo-element */
+.aura-btn-loading {
+    pointer-events: none;
+    color: transparent !important;
+}
+
+.aura-btn-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    margin-left: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: aura-spin 0.6s linear infinite;
+}
+
+.aura-btn-loading.aura-btn-secondary::after,
+.aura-btn-loading.aura-btn-ghost::after,
+.aura-btn-loading.aura-btn-outline::after {
+    border-color: rgba(100, 116, 139, 0.2);
+    border-top-color: var(--color-aura-surface-500);
+}
+
+/* Icon-only button: equal padding on all sides */
+.aura-btn-icon-only.aura-btn-xs { padding: 0.375rem !important; }
+.aura-btn-icon-only.aura-btn-sm { padding: 0.5rem !important; }
+.aura-btn-icon-only { padding: 0.625rem !important; }
+.aura-btn-icon-only.aura-btn-lg { padding: 0.75rem !important; }
+.aura-btn-icon-only.aura-btn-xl { padding: 1rem !important; }
+
+/* Gradient button filter */
+.aura-btn-gradient:hover {
+    filter: brightness(1.1);
+}
+
+/* ============================================
+   CHECKBOX — hidden input + sibling :checked selectors
+   ============================================ */
+.aura-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.aura-checkbox-box svg {
+    opacity: 0;
+    transform: scale(0);
+    transition: all var(--animate-duration-normal) var(--ease-aura-spring);
+}
+
+.aura-checkbox input:checked + .aura-checkbox-box {
+    background: var(--color-aura-primary-500);
+    border-color: var(--color-aura-primary-500);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+}
+
+.dark .aura-checkbox input:checked + .aura-checkbox-box {
+    background: var(--color-aura-primary-600);
+    border-color: var(--color-aura-primary-600);
+}
+
+.aura-checkbox input:checked + .aura-checkbox-box svg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.aura-checkbox input:focus-visible + .aura-checkbox-box {
+    box-shadow: var(--aura-glow-primary);
+}
+
+.aura-checkbox:hover .aura-checkbox-box {
+    border-color: var(--color-aura-primary-600);
+}
+
+.dark .aura-checkbox:hover .aura-checkbox-box {
+    border-color: var(--color-aura-primary-400);
+}
+
+/* ============================================
+   RADIO — hidden input + sibling :checked selectors
+   ============================================ */
+.aura-radio input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.aura-radio-dot {
+    opacity: 0;
+    transform: scale(0);
+    transition: all var(--animate-duration-normal) var(--ease-aura-spring);
+}
+
+.aura-radio input:checked + .aura-radio-circle {
+    background: var(--color-aura-primary-500);
+    border-color: var(--color-aura-primary-500);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+}
+
+.dark .aura-radio input:checked + .aura-radio-circle {
+    background: var(--color-aura-primary-600);
+    border-color: var(--color-aura-primary-600);
+}
+
+.aura-radio input:checked + .aura-radio-circle .aura-radio-dot {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.aura-radio input:focus-visible + .aura-radio-circle {
+    box-shadow: var(--aura-glow-primary);
+}
+
+.aura-radio:hover .aura-radio-circle {
+    border-color: var(--color-aura-primary-600);
+}
+
+.dark .aura-radio:hover .aura-radio-circle {
+    border-color: var(--color-aura-primary-400);
+}
+
+/* ============================================
+   TOGGLE — hidden input + track/knob :checked
+   ============================================ */
+.aura-toggle-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.aura-toggle-input:checked + .aura-toggle {
+    background: var(--color-aura-primary-500);
+}
+
+.dark .aura-toggle-input:checked + .aura-toggle {
+    background: var(--color-aura-primary-600);
+}
+
+.aura-toggle-input:checked + .aura-toggle-secondary {
+    background: var(--color-aura-secondary-700);
+}
+
+.aura-toggle-input:checked + .aura-toggle-success {
+    background: var(--color-aura-success-700);
+}
+
+.aura-toggle-input:checked + .aura-toggle-danger {
+    background: var(--color-aura-danger-500);
+}
+
+.dark .aura-toggle-input:checked + .aura-toggle-danger {
+    background: var(--color-aura-danger-600);
+}
+
+.aura-toggle-input:checked + .aura-toggle .aura-toggle-knob {
+    transform: translateX(20px);
+}
+
+.aura-toggle-input:checked + .aura-toggle-sm .aura-toggle-knob {
+    transform: translateX(16px);
+}
+
+.aura-toggle-input:checked + .aura-toggle-lg .aura-toggle-knob {
+    transform: translateX(24px);
+}
+
+.aura-toggle-input:focus-visible + .aura-toggle {
+    box-shadow: var(--aura-glow-primary);
+}
+
+/* ============================================
+   SELECT — dropdown arrow SVG background-image
+   ============================================ */
+.aura-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+/* ============================================
+   SKELETON — ::after shimmer overlay
+   ============================================ */
+.aura-skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+    animation: aura-shimmer 1.8s ease-in-out infinite;
+}
+
+.dark .aura-skeleton::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 50%, transparent 100%);
+}
+
+/* ============================================
+   TOOLTIP — position + ::after arrow triangle
+   ============================================ */
+.aura-tooltip-top {
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.aura-tooltip-bottom {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.aura-tooltip-left {
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.aura-tooltip-right {
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.aura-tooltip::after {
+    content: '';
+    position: absolute;
+    border: 5px solid transparent;
+}
+
+.aura-tooltip-top::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top-color: var(--color-aura-surface-900);
+}
+
+.aura-tooltip-bottom::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-bottom-color: var(--color-aura-surface-900);
+}
+
+.aura-tooltip-left::after {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left-color: var(--color-aura-surface-900);
+}
+
+.aura-tooltip-right::after {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right-color: var(--color-aura-surface-900);
+}
+
+.dark .aura-tooltip-top::after {
+    border-top-color: var(--color-aura-surface-700);
+}
+
+.dark .aura-tooltip-bottom::after {
+    border-bottom-color: var(--color-aura-surface-700);
+}
+
+.dark .aura-tooltip-left::after {
+    border-left-color: var(--color-aura-surface-700);
+}
+
+.dark .aura-tooltip-right::after {
+    border-right-color: var(--color-aura-surface-700);
+}
+
+/* ============================================
+   PROGRESS — striped/animated background-image
+   ============================================ */
+.aura-progress-striped,
+.aura-progress-animated {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 20px 20px;
+}
+
+.aura-progress-animated {
+    animation: aura-progress-stripes 1s linear infinite;
+}
+
+/* ============================================
+   SPINNER — conic-gradient variant
+   ============================================ */
+.aura-spinner-gradient {
+    border-color: transparent;
+    background:
+        linear-gradient(var(--color-aura-surface-0), var(--color-aura-surface-0)) padding-box,
+        conic-gradient(from 0deg, transparent 0%, var(--color-aura-primary-500) 75%, transparent 100%) border-box;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    animation: aura-spin 0.8s linear infinite;
+}
+
+/* ============================================
+   AVATAR — color gradient variants
+   ============================================ */
+.aura-avatar-color-primary { background: linear-gradient(135deg, #4338ca, #3730a3); }
+.aura-avatar-color-success { background: linear-gradient(135deg, #047857, #065f46); }
+.aura-avatar-color-warning { background: linear-gradient(135deg, #b45309, #92400e); }
+.aura-avatar-color-danger  { background: linear-gradient(135deg, #b91c1c, #991b1b); }
+.aura-avatar-color-info    { background: linear-gradient(135deg, #0369a1, #075985); }
+.aura-avatar-color-purple  { background: linear-gradient(135deg, #7e22ce, #6b21a8); }
+.aura-avatar-color-pink    { background: linear-gradient(135deg, #be185d, #9d174d); }
+.aura-avatar-color-teal    { background: linear-gradient(135deg, #0f766e, #115e59); }
+.aura-avatar-color-orange  { background: linear-gradient(135deg, #c2410c, #9a3412); }
+.aura-avatar-color-indigo  { background: linear-gradient(135deg, #4f46e5, #4338ca); }
+
+/* Avatar status indicator */
+.aura-avatar-status {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    height: 25%;
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 50%;
+    border: 2px solid var(--color-aura-surface-0);
+    box-sizing: content-box;
+}
+
+.aura-avatar-status-online { background: var(--color-aura-success-500); }
+.aura-avatar-status-offline { background: var(--color-aura-surface-400); }
+.aura-avatar-status-busy { background: var(--color-aura-danger-500); }
+/* `away` was accepted by the component and missing here, so the dot rendered
+   transparent — a white ring that looked like a clipped circle. */
+.aura-avatar-status-away { background: var(--color-aura-warning-500); }
+
+/* Avatar group overlap */
+.aura-avatar-group .aura-avatar {
+    margin-left: -8px;
+    border: 2px solid var(--color-aura-surface-0);
+    box-sizing: content-box;
+}
+
+.aura-avatar-group .aura-avatar:last-child {
+    margin-left: 0;
+}
+
+.aura-avatar-group .aura-avatar:hover {
+    z-index: 1;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   BADGE — dot ::before
+   ============================================ */
+.aura-badge-dot::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+}
+
+.aura-badge-sm.aura-badge-dot::before {
+    width: 5px;
+    height: 5px;
+}
+
+/* ============================================
+   INPUT — error nested selector with aura-has-error
+   ============================================ */
+.aura-has-error .aura-input,
+.aura-has-error .aura-textarea,
+.aura-has-error .aura-select {
+    border-color: var(--color-aura-danger-500);
+    background: var(--color-aura-danger-50);
+}
+
+.aura-has-error .aura-input:focus,
+.aura-has-error .aura-textarea:focus,
+.aura-has-error .aura-select:focus {
+    box-shadow: var(--aura-glow-danger);
+    background: var(--color-aura-surface-0);
+}
+
+/* The select was missing here, so in dark mode a field in error kept the light
+   danger-50 background from the rule above while its text inverted to near
+   white: white on pale pink, which is not a contrast problem so much as an
+   invisible field. */
+.dark .aura-has-error .aura-input,
+.dark .aura-has-error .aura-textarea,
+.dark .aura-has-error .aura-select {
+    background: rgba(248, 113, 113, 0.06);
+}
+
+/* ============================================
+   INPUT GROUP — prefix/suffix border-radius reset
+   ============================================ */
+.aura-input-group .aura-input {
+    border-radius: 0;
+    flex: 1;
+}
+
+.aura-input-prefix {
+    border-right: none;
+    border-radius: var(--radius-aura-md) 0 0 var(--radius-aura-md);
+}
+
+.aura-input-suffix {
+    border-left: none;
+    border-radius: 0 var(--radius-aura-md) var(--radius-aura-md) 0;
+}
+
+/* ============================================
+   DARK MODE — alert dismiss hover
+   ============================================ */
+.dark .aura-alert-dismiss:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   DARK MODE — dropdown danger item
+   ============================================ */
+.dark .aura-dropdown-item-danger {
+    color: var(--color-aura-danger-400);
+}
+
+.dark .aura-dropdown-item-danger:hover {
+    background: rgba(248, 113, 113, 0.1);
+    color: var(--color-aura-danger-300);
+}
+
+/* ============================================
+   ACCORDION — chevron rotation
+   ============================================ */
+.aura-accordion-chevron {
+    transition: transform 0.2s ease;
+}
+.aura-accordion-chevron-open {
+    transform: rotate(180deg);
+}
+
+/* ============================================
+   TOAST — progress bar smooth transition
+   ============================================ */
+.aura-toast-progress-bar {
+    transition: width 50ms linear;
+}
+
+/* ============================================
+   EDITOR — placeholder via data attribute + content headings
+   ============================================ */
+.aura-editor-content:empty::before {
+    content: attr(data-placeholder);
+    color: var(--color-aura-surface-400);
+    pointer-events: none;
+}
+
+.aura-editor-content h1 { font-size: 1.75em; font-weight: 700; margin: 0.5em 0; }
+.aura-editor-content h2 { font-size: 1.5em; font-weight: 700; margin: 0.5em 0; }
+.aura-editor-content h3 { font-size: 1.25em; font-weight: 600; margin: 0.4em 0; }
+.aura-editor-content h4 { font-size: 1.1em; font-weight: 600; margin: 0.3em 0; }
+.aura-editor-content ul { list-style: disc; padding-left: 1.5em; margin: 0.5em 0; }
+.aura-editor-content ol { list-style: decimal; padding-left: 1.5em; margin: 0.5em 0; }
+
+/* ============================================
+   FILE UPLOAD — drag zone border animation
+   ============================================ */
+.aura-file-upload-dragging {
+    border-color: var(--color-aura-primary-500) !important;
+    background: rgba(99, 102, 241, 0.04) !important;
+}
+
+/* ============================================
+   TABLE — striped, hoverable, bordered, compact
+   ============================================ */
+.aura-table-striped tbody tr:nth-child(even) {
+    background: var(--color-aura-surface-50);
+}
+
+.aura-table-hoverable tbody tr:hover {
+    background: var(--color-aura-surface-100);
+}
+
+.aura-table-bordered th,
+.aura-table-bordered td {
+    border: 1px solid var(--color-aura-surface-200);
+}
+
+.aura-table-compact th,
+.aura-table-compact td {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+}
+
+.dark .aura-table-striped tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.dark .aura-table-hoverable tbody tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
