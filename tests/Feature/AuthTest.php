@@ -93,6 +93,34 @@ class AuthTest extends TestCase
         $this->get('/components')->assertOk();
     }
 
+    /**
+     * The auth screens are not static pages: the password field reveals itself,
+     * the two-factor screen swaps between a code and a recovery code, and the OTP
+     * field is driven by Alpine, which ships inside Livewire's bundle. A layout
+     * without it renders those components in every state at once — the password
+     * field showed both of its eye icons at the same time.
+     *
+     * Asserted against the template and the stylesheet rather than a response:
+     * Livewire injects nothing in the testing environment, so a test that looked
+     * at the rendered HTML would be checking the environment, not the code.
+     */
+    public function test_the_auth_layout_loads_the_scripts_its_components_need(): void
+    {
+        $layout = (string) file_get_contents(resource_path('views/components/layouts/auth.blade.php'));
+
+        $this->assertStringContainsString('@livewireScripts', $layout);
+    }
+
+    /**
+     * Alpine hides an x-cloak element only once it has booted; the rule that
+     * hides it before that has to exist in the stylesheet, or the element it
+     * hides is visible for the first frames — which is the flash x-cloak is for.
+     */
+    public function test_x_cloak_actually_hides_something(): void
+    {
+        $this->assertStringContainsString('[x-cloak]', (string) file_get_contents(resource_path('css/app.css')));
+    }
+
     public function test_a_password_reset_link_can_be_requested(): void
     {
         User::factory()->create(['email' => 'marco@example.com']);

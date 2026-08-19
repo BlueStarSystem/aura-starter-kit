@@ -47,3 +47,9 @@
 .aura-form-fluid .aura-password-input {
     max-width: none;
 }
+
+/* Alpine removes this after it boots; without the rule the element it hides is
+   visible for the first frames, which is the flash x-cloak exists to prevent. */
+[x-cloak] {
+    display: none !important;
+}

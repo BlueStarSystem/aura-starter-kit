@@ -50,5 +50,11 @@
             @endisset
         </div>
     </div>
+
+    {{-- Alpine ships inside Livewire's bundle, and the auth screens need it as
+         much as the rest of the app: without it the password field shows both
+         its reveal icons at once and the two-factor screen cannot switch to the
+         recovery-code form. --}}
+    @livewireScripts
 </body>
 </html>
