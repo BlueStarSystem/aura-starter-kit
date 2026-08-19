@@ -38,18 +38,26 @@ The dashboard sits behind `auth`; the landing page and the component overview st
 because a kit that hides its own shop window shows nothing to the person deciding whether to
 use it.
 
+## Settings
+
+Under `/settings`, behind `auth`: the profile, the password, and two-factor authentication with
+its QR code, its recovery codes, and the confirmation step that only counts it as on once a code
+has actually worked. The two-factor page asks for the password again before it will show a
+secret, matching what Fortify enforces on the endpoints behind it.
+
+Email verification is off, as it is in a plain Laravel install — but its screen is here and
+wired, so turning it on really is one uncommented line in `config/fortify.php` plus
+`MustVerifyEmail` on the user model.
+
 ## What is not here yet
 
 Stated plainly, because a starter kit that pretends to be finished wastes your afternoon:
 
-- **No settings or profile pages.** Fortify's update-profile and update-password endpoints are
-  enabled, but there is no screen for them yet, and no screen to turn two-factor on.
 - **Passkeys are off.** Fortify ships them; they need a WebAuthn ceremony in JavaScript this kit
   does not have. A sign-in button that cannot sign anyone in is worse than no button.
-- **Email verification is off**, as it is in a plain Laravel install. Uncomment
-  `Features::emailVerification()` and the `MustVerifyEmail` interface on the user model.
 - **The test suite fails until you build the assets.** `@vite` throws without a manifest, which
-  is true of every Laravel starter kit; run `npm install && npm run build` first.
+  is true of every Laravel starter kit; run `npm install && npm run build` first. CI does it in
+  the right order.
 
 ## Requirements
 

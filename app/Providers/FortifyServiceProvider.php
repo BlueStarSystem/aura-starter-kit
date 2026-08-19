@@ -41,6 +41,13 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::confirmPasswordView(fn () => view('auth.confirm-password'));
         Fortify::twoFactorChallengeView(fn () => view('auth.two-factor-challenge'));
 
+        /*
+         * Registered even though email verification is off in config/fortify.php:
+         * turning the feature on should be one uncommented line, not one line and
+         * then a missing view.
+         */
+        Fortify::verifyEmailView(fn () => view('auth.verify-email'));
+
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);

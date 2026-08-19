@@ -1,0 +1,44 @@
+name: Tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: sqlite3, pdo_sqlite
+          coverage: none
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install PHP dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Prepare the application
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          touch database/database.sqlite
+          php artisan migrate --force
+
+      # The suite renders every page, and @vite throws without a manifest, so the
+      # assets have to exist before the tests run. Skipping this is what makes a
+      # freshly created application look broken to whoever tries it first.
+      - name: Build the assets
+        run: |
+          npm ci
+          npm run build
+
+      - name: Run the tests
+        run: php artisan test

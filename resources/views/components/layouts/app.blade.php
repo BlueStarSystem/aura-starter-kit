@@ -49,6 +49,7 @@
                     </x-slot:trigger>
 
                     <x-aura::dropdown.item href="{{ url('/dashboard') }}" icon="home">Dashboard</x-aura::dropdown.item>
+                    <x-aura::dropdown.item href="{{ route('settings.profile') }}" icon="settings">Settings</x-aura::dropdown.item>
                     <x-aura::dropdown.separator />
                     {{-- Signing out is a state change, so it is a POST with a token,
                          never a link someone can be tricked into following. --}}
