@@ -33,6 +33,7 @@
 
         <x-slot:items>
             <x-aura::navbar.item href="{{ url('/') }}" :active="request()->is('/')">Home</x-aura::navbar.item>
+            <x-aura::navbar.item href="{{ url('/components') }}" :active="request()->is('components')">Components</x-aura::navbar.item>
             <x-aura::navbar.item href="{{ url('/dashboard') }}" :active="request()->is('dashboard')">Dashboard</x-aura::navbar.item>
         </x-slot:items>
 
@@ -42,6 +43,7 @@
 
         <x-slot:mobile>
             <x-aura::navbar.item href="{{ url('/') }}" :active="request()->is('/')">Home</x-aura::navbar.item>
+            <x-aura::navbar.item href="{{ url('/components') }}" :active="request()->is('components')">Components</x-aura::navbar.item>
             <x-aura::navbar.item href="{{ url('/dashboard') }}" :active="request()->is('dashboard')">Dashboard</x-aura::navbar.item>
         </x-slot:mobile>
     </x-aura::navbar>

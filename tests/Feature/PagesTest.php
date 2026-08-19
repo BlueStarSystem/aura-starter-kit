@@ -21,6 +21,35 @@ class PagesTest extends TestCase
         $this->get('/dashboard')->assertOk()->assertSee('Dashboard');
     }
 
+    public function test_the_components_overview_renders_every_component_from_the_registry(): void
+    {
+        $catalogue = app(\App\Support\AuraCatalogue::class);
+        $components = $catalogue->components();
+
+        $this->assertGreaterThan(100, $components->count(), 'The package registry was not read.');
+
+        $html = $this->get('/components')->assertOk()->getContent();
+
+        // The count is stated on the page; it must be the registry's, not a number
+        // someone typed. If a release adds a component, this follows on its own.
+        $this->assertStringContainsString($components->count().' components', $html);
+
+        // Spot-check both ends of the alphabet so a truncated loop is caught.
+        $this->assertStringContainsString($catalogue->title($components->first()), $html);
+        $this->assertStringContainsString($catalogue->title($components->last()), $html);
+    }
+
+    public function test_the_overview_states_no_component_count_by_hand(): void
+    {
+        $source = (string) file_get_contents(resource_path('views/components-overview.blade.php'));
+
+        $this->assertDoesNotMatchRegularExpression(
+            '/\d{2,3}\+?\s+(free\s+)?components?/i',
+            $source,
+            'The overview states a component count as a literal. Use $components->count().',
+        );
+    }
+
     public function test_the_pages_use_aura_components(): void
     {
         $html = $this->get('/')->assertOk()->getContent();
