@@ -1,10 +1,12 @@
 @import 'tailwindcss';
 
 /*
- * Aura UI. Published into resources/css/vendor/aura-ui by `php artisan aura:install`,
- * which the starter kit runs for you on creation.
+ * Imported straight from vendor, so it stays in step with the package on every
+ * composer update. The copy `aura:install` publishes under resources/css is a
+ * mirror that only changes when the installer is re-run — which is how a stale
+ * stylesheet gets shipped without anything raising an error.
  */
-@import './vendor/aura-ui/aura.css';
+@import '../../vendor/bluestarsystem/aura-ui/resources/css/aura.css';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
