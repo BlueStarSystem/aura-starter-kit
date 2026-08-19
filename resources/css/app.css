@@ -33,3 +33,17 @@
     --color-aura-primary-800: oklch(0.38 0.17 308);
     --color-aura-primary-900: oklch(0.32 0.14 308);
 }
+
+/*
+ * Aura's field wrapper caps itself at 340px and builds its own class list, so
+ * the width cannot be overridden by passing a class to the component. On a card
+ * wider than that the fields end up narrower than the button above and below
+ * them, which reads as a mistake rather than a choice.
+ *
+ * Scoped to forms that opt in, so a field dropped into a page keeps the
+ * library's default.
+ */
+.aura-form-fluid .aura-input-wrapper,
+.aura-form-fluid .aura-password-input {
+    max-width: none;
+}

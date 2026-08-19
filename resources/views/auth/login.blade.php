@@ -1,7 +1,7 @@
 <x-layouts.auth title="Sign in" heading="Sign in">
     <x-slot:subheading>Welcome back.</x-slot:subheading>
 
-    <form method="POST" action="{{ route('login') }}" class="space-y-5">
+    <form method="POST" action="{{ route('login') }}" class="aura-form-fluid space-y-5">
         @csrf
 
         <x-aura::input

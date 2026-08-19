@@ -1,5 +1,5 @@
 <x-layouts.auth title="Create account" heading="Create your account">
-    <form method="POST" action="{{ route('register') }}" class="space-y-5">
+    <form method="POST" action="{{ route('register') }}" class="aura-form-fluid space-y-5">
         @csrf
 
         <x-aura::input

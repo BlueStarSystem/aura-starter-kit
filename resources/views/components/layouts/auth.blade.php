@@ -29,7 +29,7 @@
         <div class="w-full max-w-md">
             <x-aura::card>
                 <div class="mb-6">
-                    <x-aura::heading level="1" class="text-xl">{{ $heading }}</x-aura::heading>
+                    <x-aura::heading level="1">{{ $heading }}</x-aura::heading>
                     @isset($subheading)
                         <x-aura::text class="mt-1 text-sm">{{ $subheading }}</x-aura::text>
                     @endisset

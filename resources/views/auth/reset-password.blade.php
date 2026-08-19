@@ -1,5 +1,5 @@
 <x-layouts.auth title="Choose a new password" heading="Choose a new password">
-    <form method="POST" action="{{ route('password.update') }}" class="space-y-5">
+    <form method="POST" action="{{ route('password.update') }}" class="aura-form-fluid space-y-5">
         @csrf
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 

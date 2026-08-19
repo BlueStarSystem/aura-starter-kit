@@ -1,7 +1,7 @@
 <x-layouts.auth title="Reset password" heading="Reset your password">
     <x-slot:subheading>We will email you a link to choose a new one.</x-slot:subheading>
 
-    <form method="POST" action="{{ route('password.email') }}" class="space-y-5">
+    <form method="POST" action="{{ route('password.email') }}" class="aura-form-fluid space-y-5">
         @csrf
 
         <x-aura::input

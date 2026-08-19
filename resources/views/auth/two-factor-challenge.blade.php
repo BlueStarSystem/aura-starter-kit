@@ -2,8 +2,8 @@
     {{-- Two forms, one visible at a time: the six-digit code from the authenticator,
          or a recovery code for whoever lost the phone. Alpine keeps the toggle
          client-side so neither form needs a round trip. --}}
-    <div x-data="{ recovery: false }" class="space-y-5">
-        <form method="POST" action="{{ route('two-factor.login') }}" class="space-y-5" x-show="! recovery">
+    <div x-data="{ recovery: false }" class="aura-form-fluid space-y-5">
+        <form method="POST" action="{{ route('two-factor.login') }}" class="aura-form-fluid space-y-5" x-show="! recovery">
             @csrf
 
             <x-aura::text class="text-sm">Enter the six-digit code from your authenticator app.</x-aura::text>
@@ -17,7 +17,7 @@
             <x-aura::button type="submit" variant="primary" class="w-full">Sign in</x-aura::button>
         </form>
 
-        <form method="POST" action="{{ route('two-factor.login') }}" class="space-y-5" x-show="recovery" x-cloak>
+        <form method="POST" action="{{ route('two-factor.login') }}" class="aura-form-fluid space-y-5" x-show="recovery" x-cloak>
             @csrf
 
             <x-aura::text class="text-sm">Enter one of your recovery codes.</x-aura::text>

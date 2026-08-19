@@ -1,7 +1,7 @@
 <x-layouts.auth title="Confirm password" heading="Confirm your password">
     <x-slot:subheading>This area needs your password again before you continue.</x-slot:subheading>
 
-    <form method="POST" action="{{ route('password.confirm') }}" class="space-y-5">
+    <form method="POST" action="{{ route('password.confirm') }}" class="aura-form-fluid space-y-5">
         @csrf
 
         <x-aura::password-input
