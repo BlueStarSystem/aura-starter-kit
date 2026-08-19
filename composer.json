@@ -16,6 +16,7 @@
     "require": {
         "php": "^8.3",
         "bluestarsystem/aura-ui": "^3.26",
+        "laravel/fortify": "^1.38",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0",
         "livewire/livewire": "^4.4"

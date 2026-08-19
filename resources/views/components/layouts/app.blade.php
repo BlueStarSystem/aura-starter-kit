@@ -34,11 +34,35 @@
         <x-slot:items>
             <x-aura::navbar.item href="{{ url('/') }}" :active="request()->is('/')">Home</x-aura::navbar.item>
             <x-aura::navbar.item href="{{ url('/components') }}" :active="request()->is('components')">Components</x-aura::navbar.item>
-            <x-aura::navbar.item href="{{ url('/dashboard') }}" :active="request()->is('dashboard')">Dashboard</x-aura::navbar.item>
+            @auth
+                <x-aura::navbar.item href="{{ url('/dashboard') }}" :active="request()->is('dashboard')">Dashboard</x-aura::navbar.item>
+            @endauth
         </x-slot:items>
 
         <x-slot:actions>
             <x-aura::theme-controller />
+
+            @auth
+                <x-aura::dropdown>
+                    <x-slot:trigger>
+                        <x-aura::button variant="ghost" size="sm">{{ auth()->user()->name }}</x-aura::button>
+                    </x-slot:trigger>
+
+                    <x-aura::dropdown.item href="{{ url('/dashboard') }}" icon="home">Dashboard</x-aura::dropdown.item>
+                    <x-aura::dropdown.separator />
+                    {{-- Signing out is a state change, so it is a POST with a token,
+                         never a link someone can be tricked into following. --}}
+                    <x-aura::dropdown.item
+                        icon="lock"
+                        x-on:click="document.getElementById('logout-form').submit()"
+                    >Sign out</x-aura::dropdown.item>
+                </x-aura::dropdown>
+
+                <form id="logout-form" method="POST" action="{{ route('logout') }}" class="hidden">@csrf</form>
+            @else
+                <x-aura::button href="{{ route('login') }}" variant="ghost" size="sm">Sign in</x-aura::button>
+                <x-aura::button href="{{ route('register') }}" variant="primary" size="sm">Get started</x-aura::button>
+            @endauth
         </x-slot:actions>
 
         <x-slot:mobile>

@@ -2,23 +2,30 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 /**
- * The two pages the starter kit ships must render. Every component on them is
- * a real Aura tag with real props: a typo in either is a fatal Blade error, so
+ * The pages the starter kit ships must render. Every component on them is a
+ * real Aura tag with real props: a typo in either is a fatal Blade error, so
  * this is the cheapest guard against shipping a kit that does not boot.
  */
 class PagesTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_the_welcome_page_renders(): void
     {
         $this->get('/')->assertOk()->assertSee('Your application starts here');
     }
 
-    public function test_the_dashboard_renders(): void
+    public function test_the_dashboard_renders_for_a_signed_in_user(): void
     {
-        $this->get('/dashboard')->assertOk()->assertSee('Dashboard');
+        $this->actingAs(User::factory()->create())
+            ->get('/dashboard')
+            ->assertOk()
+            ->assertSee('Dashboard');
     }
 
     public function test_the_components_overview_renders_every_component_from_the_registry(): void
