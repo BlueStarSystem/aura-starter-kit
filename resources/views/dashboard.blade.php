@@ -13,8 +13,7 @@
         <x-aura::heading level="3">Next steps</x-aura::heading>
         <x-aura::text class="mt-2">
             Visit <code>/aura/playground</code> to browse every component running in this
-            application, or read the documentation at
-            <x-aura::link href="https://aura-ui.com">aura-ui.com</x-aura::link>.
+            application, or read the documentation at <x-aura::link href="https://aura-ui.com">aura-ui.com</x-aura::link>.
         </x-aura::text>
     </x-aura::card>
 </x-layouts.app>
