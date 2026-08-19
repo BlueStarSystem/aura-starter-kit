@@ -63,16 +63,16 @@
         },
         {
             "name": "bluestarsystem/aura-ui",
-            "version": "v3.26.3",
+            "version": "v3.26.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BlueStarSystem/aura-ui.git",
-                "reference": "df17a448d081919791d7f3466921d809172ff9bf"
+                "reference": "b7ac44f12630705b6c8304c77397e83de01a2b55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BlueStarSystem/aura-ui/zipball/df17a448d081919791d7f3466921d809172ff9bf",
-                "reference": "df17a448d081919791d7f3466921d809172ff9bf",
+                "url": "https://api.github.com/repos/BlueStarSystem/aura-ui/zipball/b7ac44f12630705b6c8304c77397e83de01a2b55",
+                "reference": "b7ac44f12630705b6c8304c77397e83de01a2b55",
                 "shasum": ""
             },
             "require": {
@@ -130,7 +130,7 @@
                 "issues": "https://github.com/BlueStarSystem/aura-ui/issues",
                 "source": "https://github.com/BlueStarSystem/aura-ui"
             },
-            "time": "2026-08-08T12:17:25+00:00"
+            "time": "2026-08-19T21:54:50+00:00"
         },
         {
             "name": "brick/math",

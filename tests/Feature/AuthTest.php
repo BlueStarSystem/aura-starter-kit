@@ -112,13 +112,25 @@ class AuthTest extends TestCase
     }
 
     /**
-     * Alpine hides an x-cloak element only once it has booted; the rule that
-     * hides it before that has to exist in the stylesheet, or the element it
-     * hides is visible for the first frames — which is the flash x-cloak is for.
+     * Alpine hides an x-cloak element only once it has booted; something has to
+     * hide it before that or it flashes. Aura ships that rule since v3.26.4 —
+     * this kit used to carry its own copy, and the test now checks the package
+     * still provides it rather than that we remembered to.
      */
-    public function test_x_cloak_actually_hides_something(): void
+    public function test_the_package_ships_the_x_cloak_rule(): void
     {
-        $this->assertStringContainsString('[x-cloak]', (string) file_get_contents(resource_path('css/app.css')));
+        $this->assertStringContainsString(
+            '[x-cloak]',
+            (string) file_get_contents(base_path('vendor/bluestarsystem/aura-ui/resources/css/base/alpine.css')),
+        );
+    }
+
+    public function test_the_auth_forms_widen_their_fields_through_the_packages_own_property(): void
+    {
+        $css = (string) file_get_contents(resource_path('css/app.css'));
+
+        $this->assertStringContainsString('--aura-field-max-width: none', $css);
+        $this->assertStringNotContainsString('.aura-input-wrapper', $css, 'The kit is overriding the library instead of using its custom property.');
     }
 
     public function test_a_password_reset_link_can_be_requested(): void

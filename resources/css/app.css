@@ -35,21 +35,12 @@
 }
 
 /*
- * Aura's field wrapper caps itself at 340px and builds its own class list, so
- * the width cannot be overridden by passing a class to the component. On a card
- * wider than that the fields end up narrower than the button above and below
- * them, which reads as a mistake rather than a choice.
- *
- * Scoped to forms that opt in, so a field dropped into a page keeps the
- * library's default.
+ * Auth cards are 448px wide, so let their fields fill them. Aura caps a field at
+ * 340px by default and exposes the cap as a custom property — no override of the
+ * library's own rules needed.
  */
-.aura-form-fluid .aura-input-wrapper,
-.aura-form-fluid .aura-password-input {
-    max-width: none;
+.aura-form-fluid {
+    --aura-field-max-width: none;
 }
 
-/* Alpine removes this after it boots; without the rule the element it hides is
-   visible for the first frames, which is the flash x-cloak exists to prevent. */
-[x-cloak] {
-    display: none !important;
-}
+
