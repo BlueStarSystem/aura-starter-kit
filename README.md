@@ -61,7 +61,7 @@ Stated plainly, because a starter kit that pretends to be finished wastes your a
 
 ## Requirements
 
-- PHP 8.3+
+- PHP 8.4+ (the Symfony 8 components Laravel 13 depends on require 8.4.1)
 - Laravel 13
 - Node 20+ for the asset build
 
