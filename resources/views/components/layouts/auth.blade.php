@@ -22,9 +22,12 @@
 </head>
 <body class="min-h-screen bg-gray-50 text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100">
     <div class="flex min-h-screen flex-col items-center justify-center px-4 py-12">
-        <a href="{{ url('/') }}" class="mb-8">
-            <x-aura::brand name="{{ config('app.name') }}" />
-        </a>
+        {{-- The brand renders its own <a>. Wrapping it in another one is invalid
+             HTML: the browser closes the outer anchor early, taking its layout box
+             — and the margin below — with it. --}}
+        <div class="mb-8">
+            <x-aura::brand name="{{ config('app.name') }}" href="{{ url('/') }}" />
+        </div>
 
         <div class="w-full max-w-md">
             <x-aura::card>
